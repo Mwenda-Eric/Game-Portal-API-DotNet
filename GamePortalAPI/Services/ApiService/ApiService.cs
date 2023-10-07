@@ -3,34 +3,20 @@ using GamePortalAPI.DTOs.ServiceResponse;
 using GamePortalAPI.DTOs.TeacherDtos;
 using AutoMapper;
 using GamePortalAPI.Models;
+using GamePortalAPI.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace GamePortalAPI.Services.ApiService
 {
 	public class ApiService : IApiService
 	{
-        public static List<Teacher> teachers = new List<Teacher>
-        {
-            new Teacher(),
-            new Teacher
-            {
-                Id = 1,
-                TeachersName = "Mr Mwenda",
-                ProfilePictureUrl = "https://azure.profile.picture",
-                AllQuestions = new List<Question>(),
-                dateCreated = DateTime.Now,
-                lastUpdated = DateTime.Now,
-                
-            },
-            new Teacher
-            {
-
-            }
-        };
         private readonly IMapper _mapper;
+        private readonly DataContext _context;
 
-		public ApiService(IMapper mapper)
+		public ApiService(IMapper mapper, DataContext context)
 		{
             _mapper = mapper;
+            _context = context;
 		}
 
         public async Task<ServiceResponse<List<GetTeacherResponseDto>>> CreateTeacher(AddTeacherRequestDto addTeacherRequestDto)
@@ -38,9 +24,14 @@ namespace GamePortalAPI.Services.ApiService
             var serviceResponse = new ServiceResponse<List<GetTeacherResponseDto>>();
 
             var newTeacher =  _mapper.Map<Teacher>(addTeacherRequestDto);
-            teachers.Add(newTeacher);
 
-            serviceResponse.Data = teachers.Select(teacher => _mapper.Map<GetTeacherResponseDto>(teacher)).ToList();
+            await _context.AddAsync(newTeacher);
+
+            await _context.SaveChangesAsync();
+
+            var databaseTeachers = await _context.Teachers.ToListAsync();
+
+            serviceResponse.Data = databaseTeachers.Select(teacher => _mapper.Map<GetTeacherResponseDto>(teacher)).ToList();
             serviceResponse.Message = $"Tr {addTeacherRequestDto.TeachersName} Added Successfully!";
             serviceResponse.IsSuccessful = true;
 
@@ -51,7 +42,9 @@ namespace GamePortalAPI.Services.ApiService
         {
             var serviceResponse = new ServiceResponse<List<GetTeacherResponseDto>>();
 
-            serviceResponse.Data = teachers.Select(teacher => _mapper.Map<GetTeacherResponseDto>(teacher)).ToList();
+            var databaseTeachers = await _context.Teachers.ToListAsync();
+
+            serviceResponse.Data = databaseTeachers.Select(teacher => _mapper.Map<GetTeacherResponseDto>(teacher)).ToList();
             serviceResponse.Message = "Success Retrieving all teachers";
             serviceResponse.IsSuccessful = true;
 

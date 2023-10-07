@@ -14,4 +14,3 @@ namespace GamePortalAPI.Models
 		public Subject Subject { get; set; } = Subject.MATH;
 	}
 }
-
