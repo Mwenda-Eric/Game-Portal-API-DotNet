@@ -3,7 +3,7 @@ namespace GamePortalAPI.Models
 {
 	public class Teacher
 	{
-		public int Id;
+		public int Id { get; set; }
 		public string TeachersName { get; set; } = String.Empty;
 		public List<Question>? AllQuestions { get; set; }
 		public string ProfilePictureUrl { get; set; } = String.Empty;

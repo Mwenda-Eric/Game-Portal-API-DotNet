@@ -10,6 +10,11 @@ namespace GamePortalAPI.Data
 
 		//public DbSet<Teacher> Teachers { get; set; }
 		public DbSet<Teacher> Teachers => Set<Teacher>();
-	}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Question>().HasKey("QuestionId");
+        }
+    }
 }
 
