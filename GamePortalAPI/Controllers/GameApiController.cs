@@ -23,6 +23,13 @@ namespace GamePortalAPI.Controllers
 			return Ok("DEFAULT ROOT FOR API.");
 		}
 
+		[HttpGet]
+		[Route("GetAllTeachers")]
+		public async Task<ActionResult<ServiceResponse<List<GetTeacherResponseDto>>>> GetAllTeachers()
+		{
+			return Ok(_apiService.GetAllTeachers());
+		}
+
 		[HttpPost]
 		[Route("CreateTeacher")]
 		public async Task<ActionResult<ServiceResponse<List<GetTeacherResponseDto>>>>
