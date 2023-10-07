@@ -24,6 +24,8 @@ namespace GamePortalAPI.Services.ApiService
             var serviceResponse = new ServiceResponse<List<GetTeacherResponseDto>>();
 
             var newTeacher =  _mapper.Map<Teacher>(addTeacherRequestDto);
+            newTeacher.dateCreated = DateTime.Now;
+            newTeacher.lastUpdated = DateTime.Now;
 
             await _context.AddAsync(newTeacher);
 
