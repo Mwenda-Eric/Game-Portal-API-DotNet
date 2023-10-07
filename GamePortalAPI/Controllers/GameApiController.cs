@@ -27,7 +27,7 @@ namespace GamePortalAPI.Controllers
 		[Route("GetAllTeachers")]
 		public async Task<ActionResult<ServiceResponse<List<GetTeacherResponseDto>>>> GetAllTeachers()
 		{
-			return Ok(_apiService.GetAllTeachers());
+			return Ok(await _apiService.GetAllTeachers());
 		}
 
 		[HttpPost]

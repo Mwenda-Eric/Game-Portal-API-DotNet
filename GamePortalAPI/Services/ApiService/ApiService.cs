@@ -8,7 +8,7 @@ namespace GamePortalAPI.Services.ApiService
 {
 	public class ApiService : IApiService
 	{
-        public List<Teacher> teachers = new List<Teacher>
+        public static List<Teacher> teachers = new List<Teacher>
         {
             new Teacher(),
             new Teacher
@@ -41,7 +41,7 @@ namespace GamePortalAPI.Services.ApiService
             teachers.Add(newTeacher);
 
             serviceResponse.Data = teachers.Select(teacher => _mapper.Map<GetTeacherResponseDto>(teacher)).ToList();
-            serviceResponse.Message = "Teacher Added Successfully!";
+            serviceResponse.Message = $"Tr {addTeacherRequestDto.TeachersName} Added Successfully!";
             serviceResponse.IsSuccessful = true;
 
             return serviceResponse;
@@ -52,6 +52,8 @@ namespace GamePortalAPI.Services.ApiService
             var serviceResponse = new ServiceResponse<List<GetTeacherResponseDto>>();
 
             serviceResponse.Data = teachers.Select(teacher => _mapper.Map<GetTeacherResponseDto>(teacher)).ToList();
+            serviceResponse.Message = "Success Retrieving all teachers";
+            serviceResponse.IsSuccessful = true;
 
             return serviceResponse;
         }
