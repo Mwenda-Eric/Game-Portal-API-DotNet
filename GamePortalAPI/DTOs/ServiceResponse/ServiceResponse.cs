@@ -1,5 +1,5 @@
 ﻿using System;
-namespace GamePortalAPI.DTOs
+namespace GamePortalAPI.DTOs.ServiceResponse
 {
 	public class ServiceResponse<T>
 	{
