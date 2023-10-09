@@ -4,6 +4,7 @@ using GamePortalAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamePortalAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231009012319_QuestionUpdate")]
+    partial class QuestionUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,17 +58,11 @@ namespace GamePortalAPI.Migrations
                     b.Property<int>("correctAnswerIndex")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("dateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("lastUpdated")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("QuestionId");
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Question", (string)null);
+                    b.ToTable("Question");
                 });
 
             modelBuilder.Entity("GamePortalAPI.Models.Teacher", b =>

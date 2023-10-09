@@ -11,12 +11,6 @@ namespace GamePortalAPI.Models
 		public DateTime dateCreated { get; set; } = DateTime.Now;
 		public DateTime lastUpdated { get; set; } = DateTime.Now;
 
-		//public Teacher()
-		//{
-		//	dateCreated = DateTime.Now;
-		//	lastUpdated = DateTime.Now;
-		//}
-
 	}
 }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using GamePortalAPI.DTOs.QuestionDtos;
 using GamePortalAPI.DTOs.TeacherDtos;
 using GamePortalAPI.Models;
 
@@ -11,6 +12,8 @@ namespace GamePortalAPI
 		{
 			CreateMap<AddTeacherRequestDto, Teacher>();
 			CreateMap<Teacher, GetTeacherResponseDto>();
+			CreateMap<AddQuestionRequestDto, Question>();
+			CreateMap<Question, GetQuestionResponseDto>();
 		}
 	}
 }

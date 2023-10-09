@@ -5,7 +5,6 @@ namespace GamePortalAPI.DTOs.QuestionDtos
 {
 	public class GetQuestionResponseDto
 	{
-        public string TeachersName { get; set; } = String.Empty;
         public string ActualQuestion { get; set; } = String.Empty;
         public string FirstAnswer { get; set; } = String.Empty;
         public string SecondAnswer { get; set; } = String.Empty;

@@ -1,4 +1,5 @@
 ﻿using System;
+using GamePortalAPI.DTOs.QuestionDtos;
 using GamePortalAPI.DTOs.ServiceResponse;
 using GamePortalAPI.DTOs.TeacherDtos;
 
@@ -9,6 +10,10 @@ namespace GamePortalAPI.Services.ApiService
         Task<ServiceResponse<List<GetTeacherResponseDto>>> GetAllTeachers();
 
         Task<ServiceResponse<List<GetTeacherResponseDto>>> CreateTeacher(AddTeacherRequestDto addTeacherRequestDto);
-	}
+
+        Task<ServiceResponse<List<GetTeacherResponseDto>>> AddQuestionForTeacher(AddQuestionRequestDto addQuestionRequestDto);
+
+        Task<ServiceResponse<List<GetQuestionResponseDto>>> GetQuestionsForTeacher(string teachersName);
+    }
 }
 
