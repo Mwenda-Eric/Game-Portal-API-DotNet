@@ -46,7 +46,9 @@ namespace GamePortalAPI.Controllers
         [Route("GetQuestionForTeacher/{teachersName}")]
         public async Task<ActionResult<ServiceResponse<List<GetQuestionResponseDto>>>> GetQuestionForTeacher(string teachersName)
         {
-            return Ok(await _apiService.GetQuestionsForTeacher(teachersName));
+            var response = await _apiService.GetQuestionsForTeacher(teachersName);
+            if(response.Data is null) return NotFound(response);
+            return Ok(response);
         }
     }
 }

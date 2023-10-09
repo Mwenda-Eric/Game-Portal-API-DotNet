@@ -88,17 +88,26 @@ namespace GamePortalAPI.Services.ApiService
         public async Task<ServiceResponse<List<GetQuestionResponseDto>>> GetQuestionsForTeacher(string teachersName)
         {
             var serviceResponse = new ServiceResponse<List<GetQuestionResponseDto>>();
+            Teacher teacher = new();
 
-            var teacher = await _context.Teachers
+            try
+            {
+                teacher = await _context.Teachers
                 .Where(teacher => teacher.TeachersName == teachersName)
                 .Include(questions => questions.AllQuestions)
                 .FirstAsync();
 
-            //var teachersQuestions = _mapper.Map<GetQuestionResponseDto>(teacher.AllQuestions[0]);
-
-            serviceResponse.Data = teacher.AllQuestions.Select(_mapper.Map<GetQuestionResponseDto>).ToList();
-            serviceResponse.Message = $"Successfully retrieved questions for Tr {teachersName}";
-            serviceResponse.IsSuccessful = true;
+                serviceResponse.Data = teacher.AllQuestions?.Select(_mapper.Map<GetQuestionResponseDto>).ToList();
+                serviceResponse.Message = $"Successfully retrieved questions for Tr {teachersName}";
+                serviceResponse.IsSuccessful = true;
+            }
+            catch (Exception e)
+            {
+                serviceResponse.Data = null;
+                serviceResponse.Message = "Unable to Get Questions Error is : " + e.Message;
+                serviceResponse.IsSuccessful = false;
+                return serviceResponse;
+            }
 
             return serviceResponse;
         }
