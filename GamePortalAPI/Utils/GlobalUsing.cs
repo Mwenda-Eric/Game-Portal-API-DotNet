@@ -1,5 +1,14 @@
-﻿global using GamePortalAPI.Services.ApiService;
-global using Microsoft.AspNetCore.Mvc;
+﻿global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+
+global using AutoMapper;
+
+global using GamePortalAPI.Data;
+
+global using GamePortalAPI.Services.ApiService;
+global using GamePortalAPI.Services.SessionService;
+
+global using GamePortalAPI.Repositories.SessionRepository;
 
 global using GamePortalAPI.DTOs.QuestionDtos;
 global using GamePortalAPI.DTOs.ServiceResponse;

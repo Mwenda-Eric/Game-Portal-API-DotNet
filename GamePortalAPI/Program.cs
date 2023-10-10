@@ -21,6 +21,8 @@ public class Program
         builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
         builder.Services.AddScoped<IApiService, ApiService>();
+        builder.Services.AddScoped<ISessionRepository, SessionRepository>();
+        builder.Services.AddScoped<ISessionService, SessionService>();
 
         var app = builder.Build();
 
@@ -34,7 +36,6 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
 
         app.MapControllers();
 

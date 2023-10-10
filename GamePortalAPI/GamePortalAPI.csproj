@@ -37,6 +37,8 @@
     <None Remove="DTOs\SessionDtos\" />
     <None Remove="Services\SessionService\" />
     <None Remove="Utils\" />
+    <None Remove="Repositories\" />
+    <None Remove="Repositories\SessionRepository\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -53,5 +55,10 @@
     <Folder Include="DTOs\SessionDtos\" />
     <Folder Include="Services\SessionService\" />
     <Folder Include="Utils\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Repositories\SessionRepository\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="AutoMapperProfile.cs" />
   </ItemGroup>
 </Project>

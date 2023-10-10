@@ -1,11 +1,4 @@
-﻿using System;
-using GamePortalAPI.DTOs.QuestionDtos;
-using GamePortalAPI.DTOs.ServiceResponse;
-using GamePortalAPI.DTOs.TeacherDtos;
-using GamePortalAPI.Models;
-using Microsoft.AspNetCore.Mvc;
-
-namespace GamePortalAPI.Services.ApiService
+﻿namespace GamePortalAPI.Services.ApiService
 {
 	public interface IApiService
 	{

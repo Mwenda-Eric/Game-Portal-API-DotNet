@@ -1,6 +1,4 @@
-﻿using System;
-using AutoMapper;
-
+﻿
 namespace GamePortalAPI.Utils
 {
 	public class AutoMapperProfile : Profile
@@ -9,8 +7,11 @@ namespace GamePortalAPI.Utils
 		{
 			CreateMap<AddTeacherRequestDto, Teacher>();
 			CreateMap<Teacher, GetTeacherResponseDto>();
+				
 			CreateMap<AddQuestionRequestDto, Question>();
 			CreateMap<Question, GetQuestionResponseDto>();
+
+			CreateMap<Session, GetSessionResponseDto>();
 		}
 	}
 }

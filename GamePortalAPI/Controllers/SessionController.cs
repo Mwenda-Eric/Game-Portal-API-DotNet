@@ -1,15 +1,31 @@
 ﻿using System;
+
 namespace GamePortalAPI.Controllers
 {
 	[ApiController]
 	[Route("/api/v1/[controller]")]
-	public class SessionController
+	public class SessionController : ControllerBase
 	{
-        private readonly IApiService _apiService;
+        private readonly ISessionService _sessionService;
 
-        public SessionController(IApiService apiService)
+        public SessionController(ISessionService sessionService)
         {
-            _apiService = apiService;
+            _sessionService = sessionService;
+        }
+
+        [HttpGet]
+        [Route("GetAllSessions")]
+        public async Task<ActionResult<ServiceResponse<List<GetSessionResponseDto>>>> GetAllSessions()
+        {
+            return Ok(await _sessionService.GetAllSessions());
+        }
+
+        [HttpPost]
+        [Route("CreateSession")]
+        public async Task<ActionResult<ServiceResponse<GetSessionResponseDto>>>
+            CreateSession(CreateSessionRequestDto createSessionRequestDto)
+        {
+            return Ok(await _sessionService.CreateSession(createSessionRequestDto));
         }
     }
 }
