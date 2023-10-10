@@ -1,10 +1,4 @@
-﻿using System;
-using GamePortalAPI.DTOs.ServiceResponse;
-using GamePortalAPI.DTOs.TeacherDtos;
-using GamePortalAPI.Services.ApiService;
-using Microsoft.AspNetCore.Mvc;
-
-namespace GamePortalAPI.Controllers
+﻿namespace GamePortalAPI.Controllers
 {
 	[ApiController]
 	[Route("/api/v1/[controller]")]

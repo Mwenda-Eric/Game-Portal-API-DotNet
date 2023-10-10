@@ -6,6 +6,7 @@ namespace GamePortalAPI.DTOs.QuestionDtos
 	public class AddQuestionRequestDto
 	{
         public int TeacherId { get; set; } = 1;
+        public int SessionId { get; set; }
         public string ActualQuestion { get; set; } = String.Empty;
         public string FirstAnswer { get; set; } = String.Empty;
         public string SecondAnswer { get; set; } = String.Empty;

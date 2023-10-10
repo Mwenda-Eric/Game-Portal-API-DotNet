@@ -1,12 +1,4 @@
-﻿using System;
-using GamePortalAPI.Data;
-using GamePortalAPI.DTOs.QuestionDtos;
-using GamePortalAPI.DTOs.ServiceResponse;
-using GamePortalAPI.DTOs.TeacherDtos;
-using GamePortalAPI.Services.ApiService;
-using Microsoft.AspNetCore.Mvc;
-
-namespace GamePortalAPI.Controllers
+﻿namespace GamePortalAPI.Controllers
 {
 	[ApiController]
 	[Route("/api/v1/[controller]")]
@@ -48,6 +40,16 @@ namespace GamePortalAPI.Controllers
         {
             var response = await _apiService.GetQuestionsForTeacher(teachersName);
             if(response.Data is null) return NotFound(response);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("GetSessionQuestionsForTeacher/{teachersId}/{sessionId}/subject")]
+        public async Task<ActionResult<ServiceResponse<List<GetQuestionResponseDto>>>>
+            GetSessionQuestionsForTeacher(int teachersId, int sessionId, Subject subject)
+        {
+            var response = await _apiService.GetSessionQuestionsForTeacher(teachersId, sessionId, subject);
+            if (response.Data is null) return NotFound(response);
             return Ok(response);
         }
     }

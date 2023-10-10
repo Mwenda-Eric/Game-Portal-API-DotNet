@@ -17,7 +17,12 @@ namespace GamePortalAPI.Models
 		public int correctAnswerIndex { get; set; }
 		public Subject Subject { get; set; } = Subject.MATH;
 
+		[JsonIgnore]
+		public Teacher? Teacher { get; set; }
 		public int TeacherId { get; set; }
+
+		public Session? GameSession;
+		public int SessionId { get; set; }
 
 		public DateTime dateCreated { get; set; }
 		public DateTime lastUpdated { get; set; }

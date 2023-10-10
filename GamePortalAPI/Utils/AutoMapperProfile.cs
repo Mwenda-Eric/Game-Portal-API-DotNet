@@ -1,10 +1,7 @@
 ﻿using System;
 using AutoMapper;
-using GamePortalAPI.DTOs.QuestionDtos;
-using GamePortalAPI.DTOs.TeacherDtos;
-using GamePortalAPI.Models;
 
-namespace GamePortalAPI
+namespace GamePortalAPI.Utils
 {
 	public class AutoMapperProfile : Profile
 	{

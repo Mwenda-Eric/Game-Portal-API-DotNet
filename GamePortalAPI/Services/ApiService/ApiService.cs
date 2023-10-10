@@ -6,6 +6,7 @@ using AutoMapper;
 using GamePortalAPI.Models;
 using GamePortalAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GamePortalAPI.Services.ApiService
 {
@@ -99,6 +100,33 @@ namespace GamePortalAPI.Services.ApiService
 
                 serviceResponse.Data = teacher.AllQuestions?.Select(_mapper.Map<GetQuestionResponseDto>).ToList();
                 serviceResponse.Message = $"Successfully retrieved questions for Tr {teachersName}";
+                serviceResponse.IsSuccessful = true;
+            }
+            catch (Exception e)
+            {
+                serviceResponse.Data = null;
+                serviceResponse.Message = "Unable to Get Questions Error is : " + e.Message;
+                serviceResponse.IsSuccessful = false;
+                return serviceResponse;
+            }
+
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetQuestionResponseDto>>>
+            GetSessionQuestionsForTeacher(int teachersId, int sessionId, Subject subject)
+        {
+            var serviceResponse = new ServiceResponse<List<GetQuestionResponseDto>>();
+            try
+            {
+                var sessionQuestions = await _context.Questions
+                    .Where(q => q.TeacherId == teachersId && q.SessionId == sessionId)
+                    .ToListAsync();
+
+                if (sessionQuestions is null) throw new Exception("Cannot find questions for specified session and teacher!");
+                
+                serviceResponse.Data = sessionQuestions.Select(_mapper.Map<GetQuestionResponseDto>).ToList();
+                serviceResponse.Message = $"Successfully retrieved questions for Tr {0}";
                 serviceResponse.IsSuccessful = true;
             }
             catch (Exception e)

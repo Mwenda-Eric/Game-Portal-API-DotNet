@@ -33,6 +33,10 @@
     <None Remove="DTOs\QuestionDtos\" />
     <None Remove="DTOs\TeacherDtos\" />
     <None Remove="Services\ApiService\" />
+    <None Remove="Migrations\" />
+    <None Remove="DTOs\SessionDtos\" />
+    <None Remove="Services\SessionService\" />
+    <None Remove="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -45,5 +49,9 @@
     <Folder Include="DTOs\QuestionDtos\" />
     <Folder Include="DTOs\TeacherDtos\" />
     <Folder Include="Services\ApiService\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="DTOs\SessionDtos\" />
+    <Folder Include="Services\SessionService\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@ namespace GamePortalAPI.Data
 		//public DbSet<Teacher> Teachers { get; set; }
 		public DbSet<Teacher> Teachers => Set<Teacher>();
         public DbSet<Question> Questions => Set<Question>();
+        public DbSet<Session> Sessions => Set<Session>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,5 +1,4 @@
-﻿
-using GamePortalAPI.Data;
+﻿using GamePortalAPI.Data;
 using GamePortalAPI.Services.ApiService;
 using Microsoft.EntityFrameworkCore;
 
