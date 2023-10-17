@@ -1,8 +1,4 @@
-﻿using System;
-using GamePortalAPI.Models;
-using Microsoft.EntityFrameworkCore;
-
-namespace GamePortalAPI.Data
+﻿namespace GamePortalAPI.Data
 {
 	public class DataContext : DbContext    
 	{

@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace GamePortalAPI.Models
 {
 	[Table("Question")]
-	public class Question
+	public class  Question
 	{
 		public int QuestionId { get; set; }
 		public string ActualQuestion { get; set; } = String.Empty;

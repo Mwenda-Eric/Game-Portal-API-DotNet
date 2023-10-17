@@ -12,6 +12,8 @@ namespace GamePortalAPI.Utils
 			CreateMap<Question, GetQuestionResponseDto>();
 
 			CreateMap<Session, GetSessionResponseDto>();
+			CreateMap<CreateSessionRequestDto, Session>();
+
 		}
 	}
 }

@@ -4,7 +4,7 @@ namespace GamePortalAPI.DTOs.SessionDtos
 	public class CreateSessionRequestDto
 	{
 		public string SessionName { get; set; } = "Default Questions";
-		public int TeachersId { get; set; }
+		public int TeacherId { get; set; }
 		public Subject SessionSubject { get; set; }
 	}
 }

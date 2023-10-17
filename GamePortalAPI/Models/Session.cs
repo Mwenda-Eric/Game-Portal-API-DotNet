@@ -8,7 +8,7 @@ namespace GamePortalAPI.Models
 		public List<Question>? SessionQuestions { get; set; }
 		public Subject SessionSubject { get; set; } = Subject.ENGLISH;
 
-        public int teacherId;
+        public int teacherId { get; set; }
         public Teacher? teacher;
 	}
 }

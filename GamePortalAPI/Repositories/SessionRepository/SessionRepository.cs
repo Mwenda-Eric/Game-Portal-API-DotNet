@@ -15,7 +15,19 @@ namespace GamePortalAPI.Repositories.SessionRepository
 
         public async Task<ServiceResponse<GetSessionResponseDto>> CreateSession(CreateSessionRequestDto createSessionRequestDto)
         {
-            return null;
+            var serviceResponse = new ServiceResponse<GetSessionResponseDto>();
+
+            var session = _mapper.Map<Session>(createSessionRequestDto);
+
+            await _context.AddAsync(session);
+            await _context.SaveChangesAsync();
+
+            var sessionResponse = _mapper.Map<GetSessionResponseDto>(session);
+
+            serviceResponse.Data = sessionResponse;
+            serviceResponse.IsSuccessful = true;
+
+            return serviceResponse;
         }
 
         public async Task<ServiceResponse<List<GetSessionResponseDto>>> GetAllSessions()
@@ -26,7 +38,9 @@ namespace GamePortalAPI.Repositories.SessionRepository
             {
                 var allSessions = await _context.Sessions.ToListAsync()
                     ?? throw new Exception("ERROR! Retrieving all Sessions.");
-                serviceResponse.Data = allSessions.Select(_mapper.Map<GetSessionResponseDto>).ToList();
+                    
+                serviceResponse.Data = allSessions.Select(session => _mapper.Map<GetSessionResponseDto>(session)).ToList();
+
                 serviceResponse.Message = "Successfully Retrieved all Sessions";
                 serviceResponse.IsSuccessful = true;
                 return serviceResponse;

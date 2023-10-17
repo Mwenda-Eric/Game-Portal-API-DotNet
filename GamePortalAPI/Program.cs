@@ -1,7 +1,4 @@
-﻿using GamePortalAPI.Data;
-using GamePortalAPI.Services.ApiService;
-using Microsoft.EntityFrameworkCore;
-
+﻿
 namespace GamePortalAPI;
 
 public class Program
@@ -21,8 +18,11 @@ public class Program
         builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
         builder.Services.AddScoped<IApiService, ApiService>();
+        builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+
         builder.Services.AddScoped<ISessionRepository, SessionRepository>();
         builder.Services.AddScoped<ISessionService, SessionService>();
+
 
         var app = builder.Build();
 

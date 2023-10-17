@@ -9,6 +9,7 @@ global using GamePortalAPI.Services.ApiService;
 global using GamePortalAPI.Services.SessionService;
 
 global using GamePortalAPI.Repositories.SessionRepository;
+global using GamePortalAPI.Repositories.TeacherRepository;
 
 global using GamePortalAPI.DTOs.QuestionDtos;
 global using GamePortalAPI.DTOs.ServiceResponse;
