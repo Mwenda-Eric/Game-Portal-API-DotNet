@@ -7,7 +7,8 @@ namespace GamePortalAPI.Utils
 		{
 			CreateMap<AddTeacherRequestDto, Teacher>();
 			CreateMap<Teacher, GetTeacherResponseDto>();
-				
+			CreateMap<Teacher, SingleTeacherResponseDto>();
+
 			CreateMap<AddQuestionRequestDto, Question>();
 			CreateMap<Question, GetQuestionResponseDto>();
 

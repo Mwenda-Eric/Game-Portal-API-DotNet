@@ -1,4 +1,6 @@
 ﻿using System;
+using GamePortalAPI.DTOs.ServiceResponse;
+
 namespace GamePortalAPI.Repositories.TeacherRepository
 {
 	public class TeacherRepository : ITeacherRepository
@@ -127,6 +129,41 @@ namespace GamePortalAPI.Repositories.TeacherRepository
                 serviceResponse.IsSuccessful = false;
                 return serviceResponse;
             }
+
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetTeacherResponseDto>>> GetTeachersWithSubject(Subject subject)
+        {
+            var serviceResponse = new ServiceResponse<List<GetTeacherResponseDto>>();
+
+            var databaseTeachers = await _context.Teachers
+                //.Include(teacher => teacher.AllQuestions)
+                .Where(t => t.AllQuestions.Any(q => q.Subject.Equals(subject)))
+                .ToListAsync();
+
+            serviceResponse.Data = databaseTeachers.Select(teacher => _mapper.Map<GetTeacherResponseDto>(teacher)).ToList();
+            serviceResponse.Message = "Success Retrieving all teachers";
+            serviceResponse.IsSuccessful = true;
+
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<SingleTeacherResponseDto>> CreateNewTeacher(AddTeacherRequestDto addTeacherRequestDto)
+        {
+            var serviceResponse = new ServiceResponse<SingleTeacherResponseDto>();
+
+            var newTeacher = _mapper.Map<Teacher>(addTeacherRequestDto);
+            newTeacher.dateCreated = DateTime.Now;
+            newTeacher.lastUpdated = DateTime.Now;
+
+            await _context.AddAsync(newTeacher);
+
+            await _context.SaveChangesAsync();
+
+            serviceResponse.Data = _mapper.Map<SingleTeacherResponseDto>(newTeacher);
+            serviceResponse.Message = $"{newTeacher.Id}";
+            serviceResponse.IsSuccessful = true;
 
             return serviceResponse;
         }

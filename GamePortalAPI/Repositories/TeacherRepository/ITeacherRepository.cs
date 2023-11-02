@@ -5,7 +5,11 @@ namespace GamePortalAPI.Repositories.TeacherRepository
 	{
         Task<ServiceResponse<List<GetTeacherResponseDto>>> GetAllTeachers();
 
+        Task<ServiceResponse<List<GetTeacherResponseDto>>> GetTeachersWithSubject(Subject subject);
+
         Task<ServiceResponse<List<GetTeacherResponseDto>>> CreateTeacher(AddTeacherRequestDto addTeacherRequestDto);
+
+        Task<ServiceResponse<SingleTeacherResponseDto>> CreateNewTeacher(AddTeacherRequestDto addTeacherRequestDto);
 
         Task<ServiceResponse<List<GetTeacherResponseDto>>> AddQuestionForTeacher(AddQuestionRequestDto addQuestionRequestDto);
 

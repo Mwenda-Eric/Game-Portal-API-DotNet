@@ -18,12 +18,27 @@
             return Ok(await _apiService.GetAllTeachers());
         }
 
+        [HttpGet]
+        [Route("GetTeachersWithSubject/{subject}")]
+        public async Task<ActionResult<ServiceResponse<List<GetTeacherResponseDto>>>> GetTeachersWithSubject(Subject subject)
+        {
+            return Ok(await _apiService.GetTeachersWithSubject(subject));
+        }
+
         [HttpPost]
         [Route("CreateTeacher")]
         public async Task<ActionResult<ServiceResponse<List<GetTeacherResponseDto>>>>
             CreateTeacher(AddTeacherRequestDto addTeacherRequestDto)
         {
             return Ok(await _apiService.CreateTeacher(addTeacherRequestDto));
+        }
+
+        [HttpPost]
+        [Route("CreateNewTeacher")]
+        public async Task<ActionResult<ServiceResponse<SingleTeacherResponseDto>>>
+            CreateNewTeacher(AddTeacherRequestDto addTeacherRequestDto)
+        {
+            return Ok(await _apiService.CreateNewTeacher(addTeacherRequestDto));
         }
 
         [HttpPost]

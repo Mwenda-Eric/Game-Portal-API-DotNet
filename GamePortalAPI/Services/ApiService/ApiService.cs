@@ -1,4 +1,6 @@
 ﻿
+using GamePortalAPI.Models;
+
 namespace GamePortalAPI.Services.ApiService
 {
 	public class ApiService : IApiService
@@ -34,6 +36,16 @@ namespace GamePortalAPI.Services.ApiService
             GetSessionQuestionsForTeacher(int teachersId, int sessionId, Subject subject)
         {
             return await _teacherRepository.GetSessionQuestionsForTeacher(teachersId, sessionId, subject);
+        }
+
+        public async Task<ServiceResponse<List<GetTeacherResponseDto>>> GetTeachersWithSubject(Subject subject)
+        {
+            return await _teacherRepository.GetTeachersWithSubject(subject);
+        }
+
+        public async Task<ServiceResponse<SingleTeacherResponseDto>> CreateNewTeacher(AddTeacherRequestDto addTeacherRequestDto)
+        {
+            return await _teacherRepository.CreateNewTeacher(addTeacherRequestDto);
         }
     }
 }
