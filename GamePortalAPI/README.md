@@ -544,7 +544,6 @@ Generates questions using AI based on topic and subject.
       "subject": "MATH",
       "id": 102
     }
-    // Additional questions...
   ],
   "message": "Successfully generated 5 MATH questions on Algebra",
   "isSuccessful": true
@@ -608,6 +607,32 @@ Creates a new teacher profile and returns all teachers.
 ```json
 {
   "data": [
+    {
+      "ConnectionStrings": {
+        "DatabaseConnection": "Server=your-server;Database=GamePortalDB;User Id=your-user;Password=your-password;"
+      },
+      "AzureAI": {
+        "CognitiveServicesEndpoint": "https://your-cognitive-services.cognitiveservices.azure.com/",
+        "ApiKey": "your-cognitive-services-api-key",
+        "Region": "eastus"
+      },
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft.AspNetCore": "Warning"
+        }
+      },
+      "AllowedHosts": "*",
+      "Cors": {
+        "AllowedOrigins": [
+          "https://yourgameportal.com",
+          "https://dev.yourgameportal.com"
+        ]
+      }
+    }
+  ]
+}
+```
 
 ## Technology Stack
 
@@ -639,32 +664,6 @@ Creates a new teacher profile and returns all teachers.
 ### API Configuration
 
 The application uses `appsettings.json` for configuration:
-
-```json
-{
-  "ConnectionStrings": {
-    "DatabaseConnection": "Server=your-server;Database=GamePortalDB;User Id=your-user;Password=your-password;"
-  },
-  "AzureAI": {
-    "CognitiveServicesEndpoint": "https://your-cognitive-services.cognitiveservices.azure.com/",
-    "ApiKey": "your-cognitive-services-api-key",
-    "Region": "eastus"
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-  "Cors": {
-    "AllowedOrigins": [
-      "https://yourgameportal.com",
-      "https://dev.yourgameportal.com"
-    ]
-  }
-}
-```
 
 ### Database Migration
 
@@ -1205,9 +1204,8 @@ The AI question generation system leverages Azure Cognitive Services:
 ### Example AI Generation Request
 
 ```json
-POST /api/v1/AI/GenerateQuestions
 {
-  "subject": "MATH",
+   "subject": "MATH",
   "topic": "Quadratic Equations",
   "difficulty": "Medium",
   "gradeLevel": "9",
@@ -1245,7 +1243,6 @@ POST /api/v1/AI/GenerateQuestions
       "explanation": "This equation can be factored as (2x-1)(x+4)=0, making factoring the most efficient method compared to completing the square or using the quadratic formula.",
       "conceptTags": ["factoring", "problem-solving strategies", "quadratic equations"]
     }
-    // Additional questions...
   ],
   "message": "Successfully generated 5 MATH questions on Quadratic Equations",
   "isSuccessful": true,
