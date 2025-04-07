@@ -48,7 +48,7 @@ namespace GamePortalAPI.Migrations
                     b.Property<int>("Subject")
                         .HasColumnType("int");
 
-                    b.Property<int>("TeacherId")
+                    b.Property<int?>("TeacherId")
                         .HasColumnType("int");
 
                     b.Property<string>("ThirdAnswer")
@@ -88,12 +88,12 @@ namespace GamePortalAPI.Migrations
                     b.Property<int>("SessionSubject")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TeacherId")
+                    b.Property<int>("teacherId")
                         .HasColumnType("int");
 
                     b.HasKey("SessionId");
 
-                    b.HasIndex("TeacherId");
+                    b.HasIndex("teacherId");
 
                     b.ToTable("Sessions");
                 });
@@ -135,9 +135,7 @@ namespace GamePortalAPI.Migrations
 
                     b.HasOne("GamePortalAPI.Models.Teacher", "Teacher")
                         .WithMany("AllQuestions")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TeacherId");
 
                     b.Navigation("Teacher");
                 });
@@ -146,7 +144,9 @@ namespace GamePortalAPI.Migrations
                 {
                     b.HasOne("GamePortalAPI.Models.Teacher", null)
                         .WithMany("GameSessions")
-                        .HasForeignKey("TeacherId");
+                        .HasForeignKey("teacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GamePortalAPI.Models.Session", b =>

@@ -19,7 +19,7 @@ namespace GamePortalAPI.Models
 
 		[JsonIgnore]
 		public Teacher? Teacher { get; set; }
-		public int TeacherId { get; set; }
+		public int? TeacherId { get; set; }
 
 		public Session? GameSession;
 		public int SessionId { get; set; }

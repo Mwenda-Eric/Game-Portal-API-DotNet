@@ -8,7 +8,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddDbContext<DataContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
 
         // Add services to the container.
         builder.Services.AddControllers();
@@ -22,8 +22,7 @@ public class Program
 
         builder.Services.AddScoped<ISessionRepository, SessionRepository>();
         builder.Services.AddScoped<ISessionService, SessionService>();
-
-
+        
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

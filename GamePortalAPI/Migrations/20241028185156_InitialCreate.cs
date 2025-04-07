@@ -34,16 +34,18 @@ namespace GamePortalAPI.Migrations
                     SessionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SessionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TeacherId = table.Column<int>(type: "int", nullable: true)
+                    SessionSubject = table.Column<int>(type: "int", nullable: false),
+                    teacherId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sessions", x => x.SessionId);
                     table.ForeignKey(
-                        name: "FK_Sessions_Teachers_TeacherId",
-                        column: x => x.TeacherId,
+                        name: "FK_Sessions_Teachers_teacherId",
+                        column: x => x.teacherId,
                         principalTable: "Teachers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,7 +60,7 @@ namespace GamePortalAPI.Migrations
                     ThirdAnswer = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     correctAnswerIndex = table.Column<int>(type: "int", nullable: false),
                     Subject = table.Column<int>(type: "int", nullable: false),
-                    TeacherId = table.Column<int>(type: "int", nullable: false),
+                    TeacherId = table.Column<int>(type: "int", nullable: true),
                     SessionId = table.Column<int>(type: "int", nullable: false),
                     dateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     lastUpdated = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -76,8 +78,7 @@ namespace GamePortalAPI.Migrations
                         name: "FK_Question_Teachers_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -91,9 +92,9 @@ namespace GamePortalAPI.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sessions_TeacherId",
+                name: "IX_Sessions_teacherId",
                 table: "Sessions",
-                column: "TeacherId");
+                column: "teacherId");
         }
 
         /// <inheritdoc />
