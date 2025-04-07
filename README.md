@@ -549,25 +549,6 @@ Generates questions using AI based on topic and subject.
   "isSuccessful": true
 }
 ```
-    {
-      "id": 1,
-      "teachersName": "John Smith",
-      "profilePictureUrl": "https://example.com/profiles/jsmith.jpg",
-      "dateCreated": "2025-03-15T10:30:00",
-      "lastUpdated": "2025-03-15T10:30:00"
-    },
-    {
-      "id": 2,
-      "teachersName": "Jane Doe",
-      "profilePictureUrl": "https://example.com/profiles/jdoe.jpg",
-      "dateCreated": "2025-03-16T14:20:00",
-      "lastUpdated": "2025-03-16T14:20:00"
-    }
-  ],
-  "message": "Success Retrieving all teachers",
-  "isSuccessful": true
-}
-```
 
 #### GET /api/v1/Teachers/GetTeachersWithSubject/{subject}
 
