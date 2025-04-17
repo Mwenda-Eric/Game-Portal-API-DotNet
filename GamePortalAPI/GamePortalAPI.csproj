@@ -42,11 +42,7 @@
     <None Remove="Services\ApiService\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="DTOs\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
     <Folder Include="Data\" />
     <Folder Include="DTOs\ServiceResponse\" />
     <Folder Include="Services\AccountCreationService\" />
@@ -55,7 +51,6 @@
     <Folder Include="DTOs\SessionDtos\" />
     <Folder Include="Services\SessionService\" />
     <Folder Include="Utils\" />
-    <Folder Include="Repositories\" />
     <Folder Include="Repositories\SessionRepository\" />
     <Folder Include="Repositories\TeacherRepository\" />
     <Folder Include="Services\ApiService\" />

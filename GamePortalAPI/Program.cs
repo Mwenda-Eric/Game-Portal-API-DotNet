@@ -1,4 +1,7 @@
 ﻿
+using GamePortalAPI.Repositories.StudentRepository;
+using GamePortalAPI.Services.StudentService;
+
 namespace GamePortalAPI;
 
 public class Program
@@ -22,6 +25,9 @@ public class Program
 
         builder.Services.AddScoped<ISessionRepository, SessionRepository>();
         builder.Services.AddScoped<ISessionService, SessionService>();
+
+        builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+        builder.Services.AddScoped<IStudentService, StudentService>();
         
         var app = builder.Build();
 

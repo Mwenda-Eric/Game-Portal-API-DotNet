@@ -1,4 +1,6 @@
 ﻿
+using GamePortalAPI.DTOs.StudentDtos;
+
 namespace GamePortalAPI.Utils
 {
 	public class AutoMapperProfile : Profile
@@ -14,6 +16,9 @@ namespace GamePortalAPI.Utils
 
 			CreateMap<Session, GetSessionResponseDto>();
 			CreateMap<CreateSessionRequestDto, Session>();
+
+			CreateMap<CreateStudentRequestDto, Student>();
+			CreateMap<Student, GetStudentResponseDto>();
 
 		}
 	}

@@ -4,6 +4,7 @@ namespace GamePortalAPI.Models
 	public class Teacher
 	{
 		public int Id { get; set; }
+		public string TeacherUniqueId { get; set; }
 		public string TeachersName { get; set; } = String.Empty;
 		public List<Question>? AllQuestions { get; set; }
 		public List<Session>? GameSessions { get; set; }

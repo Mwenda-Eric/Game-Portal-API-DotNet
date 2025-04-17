@@ -8,6 +8,7 @@
 		public DbSet<Teacher> Teachers => Set<Teacher>();
         public DbSet<Question> Questions => Set<Question>();
         public DbSet<Session> Sessions => Set<Session>();
+        public DbSet<Student> Students => Set<Student>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
