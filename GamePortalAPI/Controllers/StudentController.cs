@@ -16,7 +16,7 @@ namespace GamePortalAPI.Controllers
 
         [HttpGet]
         [Route("GetAllStudents")]
-        public async Task<ActionResult<ServiceResponse<List<GetStudentResponseDto>>>> GetAllTeachers()
+        public async Task<ActionResult<ServiceResponse<List<GetStudentResponseDto>>>> GetAllStudents()
         {
             return Ok(await _studentService.GetAllStudents());
         }
@@ -24,7 +24,7 @@ namespace GamePortalAPI.Controllers
         [HttpPost]
         [Route("CreateStudent")]
         public async Task<ActionResult<ServiceResponse<List<GetStudentResponseDto>>>>
-            CreateTeacher(CreateStudentRequestDto createStudentRequestDto)
+            CreateStudent(CreateStudentRequestDto createStudentRequestDto)
         {
             return Ok(await _studentService.CreateStudent(createStudentRequestDto));
         }

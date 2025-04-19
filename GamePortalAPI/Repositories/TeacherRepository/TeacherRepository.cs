@@ -153,6 +153,21 @@ namespace GamePortalAPI.Repositories.TeacherRepository
         {
             var serviceResponse = new ServiceResponse<SingleTeacherResponseDto>();
 
+            // Check if a student with the same playerUniqueId already exists
+            var existingTeacher = await _context.Teachers
+                .FirstOrDefaultAsync(t => t.TeacherUniqueId == addTeacherRequestDto.TeacherUniqueId);
+    
+            if (existingTeacher != null)
+            {
+                // Student already exists, return the existing student
+                var existingTeacherDto = _mapper.Map<SingleTeacherResponseDto>(existingTeacher);
+                serviceResponse.Data = existingTeacherDto;
+                serviceResponse.IsSuccessful = true;
+                serviceResponse.Message = $"Teacher '{existingTeacherDto.TeachersName}' already exists.";
+        
+                return serviceResponse;
+            }
+            
             var newTeacher = _mapper.Map<Teacher>(addTeacherRequestDto);
             newTeacher.dateCreated = DateTime.Now;
             newTeacher.lastUpdated = DateTime.Now;
@@ -162,7 +177,7 @@ namespace GamePortalAPI.Repositories.TeacherRepository
             await _context.SaveChangesAsync();
 
             serviceResponse.Data = _mapper.Map<SingleTeacherResponseDto>(newTeacher);
-            serviceResponse.Message = $"{newTeacher.Id}";
+            serviceResponse.Message = $"Teacher '{newTeacher.TeachersName}' Has been SUCCESSFULLY Created! ";
             serviceResponse.IsSuccessful = true;
 
             return serviceResponse;

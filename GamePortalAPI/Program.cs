@@ -1,6 +1,8 @@
 ﻿
 using GamePortalAPI.Repositories.StudentRepository;
 using GamePortalAPI.Services.StudentService;
+using GamePortalAPI.Repositories.AttemptRepository;
+using GamePortalAPI.Services.AttemptService;
 
 namespace GamePortalAPI;
 
@@ -28,6 +30,10 @@ public class Program
 
         builder.Services.AddScoped<IStudentRepository, StudentRepository>();
         builder.Services.AddScoped<IStudentService, StudentService>();
+        
+        // Add new services for student attempts
+        builder.Services.AddScoped<IStudentAttemptRepository, StudentAttemptRepository>();
+        builder.Services.AddScoped<IStudentAttemptService, StudentAttemptService>();
         
         var app = builder.Build();
 

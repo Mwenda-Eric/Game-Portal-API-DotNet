@@ -52,8 +52,38 @@ namespace GamePortalAPI.Repositories.SessionRepository
                 serviceResponse.IsSuccessful = false;
                 return serviceResponse;
             }
-            
+        }
+
+        public async Task<ServiceResponse<List<GetSessionResponseDto>>> GetSessionsByTeacher(int teacherId)
+        {
+            var serviceResponse = new ServiceResponse<List<GetSessionResponseDto>>();
+
+            try
+            {
+                var teacherSessions = await _context.Sessions
+                    .Where(s => s.teacherId == teacherId)
+                    .ToListAsync();
+                    
+                if (teacherSessions == null || teacherSessions.Count == 0)
+                {
+                    serviceResponse.Message = $"No sessions found for teacher with ID {teacherId}";
+                    serviceResponse.Data = new List<GetSessionResponseDto>();
+                    serviceResponse.IsSuccessful = true;
+                    return serviceResponse;
+                }
+                
+                serviceResponse.Data = teacherSessions.Select(session => _mapper.Map<GetSessionResponseDto>(session)).ToList();
+                serviceResponse.Message = $"Successfully retrieved {teacherSessions.Count} sessions for teacher with ID {teacherId}";
+                serviceResponse.IsSuccessful = true;
+                return serviceResponse;
+            }
+            catch(Exception e)
+            {
+                serviceResponse.Data = null;
+                serviceResponse.Message = e.Message;
+                serviceResponse.IsSuccessful = false;
+                return serviceResponse;
+            }
         }
     }
 }
-

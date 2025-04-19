@@ -2,10 +2,10 @@
 
 namespace GamePortalAPI.Controllers
 {
-	[ApiController]
-	[Route("/api/v1/[controller]")]
-	public class SessionController : ControllerBase
-	{
+    [ApiController]
+    [Route("/api/v1/[controller]")]
+    public class SessionController : ControllerBase
+    {
         private readonly ISessionService _sessionService;
 
         public SessionController(ISessionService sessionService)
@@ -20,6 +20,13 @@ namespace GamePortalAPI.Controllers
             return Ok(await _sessionService.GetAllSessions());
         }
 
+        [HttpGet]
+        [Route("GetSessionsByTeacher/{teacherId}")]
+        public async Task<ActionResult<ServiceResponse<List<GetSessionResponseDto>>>> GetSessionsByTeacher(int teacherId)
+        {
+            return Ok(await _sessionService.GetSessionsByTeacher(teacherId));
+        }
+
         [HttpPost]
         [Route("CreateSession")]
         public async Task<ActionResult<ServiceResponse<GetSessionResponseDto>>>
@@ -29,4 +36,3 @@ namespace GamePortalAPI.Controllers
         }
     }
 }
-
